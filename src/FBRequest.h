@@ -31,7 +31,7 @@ typedef NSUInteger FBRequestState;
  * Do not use this interface directly, instead, use method in Facebook.h
  */
 @interface FBRequest : NSObject {
-    id<FBRequestDelegate> _delegate;
+    __weak id<FBRequestDelegate> _delegate;
     NSString*             _url;
     NSString*             _httpMethod;
     NSMutableDictionary*  _params;
@@ -43,7 +43,7 @@ typedef NSUInteger FBRequestState;
 }
 
 
-@property(nonatomic,assign) id<FBRequestDelegate> delegate;
+@property(nonatomic,weak) id<FBRequestDelegate> delegate;
 
 /**
  * The URL which will be contacted to execute the request.

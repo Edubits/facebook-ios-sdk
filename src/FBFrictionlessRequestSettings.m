@@ -39,7 +39,7 @@
 - (id)init {
     if (self = [super init]) {
         // start life with an empty frictionless cache
-        self.allowedRecipients = [[[NSArray alloc] init] autorelease];
+        self.allowedRecipients = [NSArray array];
     }
     return self;
 }
@@ -65,9 +65,9 @@
     self.activeRequest = nil;
     
     if (ids == nil) {
-        self.allowedRecipients = [[[NSArray alloc] init] autorelease];
+        self.allowedRecipients = [NSArray array];
     } else {
-        self.allowedRecipients = [[[NSArray alloc] initWithArray:ids] autorelease];
+        self.allowedRecipients = [NSArray arrayWithArray:ids];
     }
 }
 
@@ -122,7 +122,7 @@
     self.activeRequest = nil;
 
     int items = [[result objectForKey: @"data"] count];
-    NSMutableArray* recipients = [[[NSMutableArray alloc] initWithCapacity: items] autorelease];
+    NSMutableArray* recipients = [NSMutableArray arrayWithCapacity:items];
         
     for (int i = 0; i < items; i++) {
         [recipients addObject: [[[result objectForKey: @"data"] 
@@ -141,15 +141,6 @@
     // briefly when it should not appear at all; in either case the correct request behavior 
     // occurs, and the cache is updated
     self.activeRequest = nil;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
-
-- (void)dealloc {    
-    self.activeRequest = nil;
-    self.allowedRecipients = nil;
-    [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

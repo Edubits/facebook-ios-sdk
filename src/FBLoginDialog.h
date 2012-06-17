@@ -27,7 +27,7 @@
  */
 
 @interface FBLoginDialog : FBDialog {
-    id<FBLoginDialogDelegate> _loginDelegate;
+    __weak id<FBLoginDialogDelegate> _loginDelegate;
 }
 
 -(id) initWithURL:(NSString *) loginURL
